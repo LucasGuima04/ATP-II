@@ -4,11 +4,11 @@
 
 int main(){
     FILE *arquivo;
-    char linha[100];
-    int j = 0;
-    char palavra[100];
+    char linha[256];
+    char copia_linha[256];
+    char palavra[256];
     char *token;
-    char *delimitador = " ";
+    char *delimitador = " \t\n,.!?";
     arquivo = fopen("texto.txt","r");
 
     if(arquivo == NULL){
@@ -20,17 +20,26 @@ int main(){
     printf("Digite a palavra que procura: \n");
     gets(palavra);
 
-    while (fgets(linha,sizeof(linha),arquivo) != NULL){
-        token = strtok(linha, delimitador);
-            while (token != NULL) {
-                if(strcmp(token,palavra) == 0){
-                    printf("%s\n",linha);
-                }
-                token = strtok(NULL, delimitador);
+    printf("\nBuscando por '%s' no arquivo...\n\n", palavra);
+    
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        strcpy(copia_linha, linha);
+        
+        token = strtok(copia_linha, delimitador);
+        
+        // Loop interno para percorrer os tokens da linha
+        while (token != NULL) {
+            // Compara o token com a palavra buscada, ignorando maiúsculas/minúsculas
+            if (strcasecmp(token, palavra) == 0) {
+                // Se a palavra for encontrada, imprime a linha original
+                printf("Palavra encontrada!\nLinha: %s", linha);
+                break; // Sai do loop interno e vai para a próxima linha do arquivo
             }
+            
+            // Pega o próximo token da linha
+            token = strtok(NULL, delimitador);
+        }
     }
-
     fclose(arquivo);
     return 0;
-
 }
