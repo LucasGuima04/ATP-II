@@ -7,10 +7,6 @@ typedef struct no {
     struct no *proximo;
 } No;
 
-No* iniciar_lista() {
-    return NULL;
-}
-
 void adicionar_no(No **lista, char valor[100]) {
     No *novo = (No*)malloc(sizeof(No));
     strcpy(novo->valor, valor);
@@ -55,7 +51,7 @@ void liberar_lista_nova(No *lista) {
 
 
 int main() {
-    No* minha_lista = iniciar_lista(); // minha_lista agora é NULL
+    No* minha_lista = NULL; 
 
     adicionar_no(&minha_lista, "Abacaxi");
     adicionar_no(&minha_lista, "Banana");
