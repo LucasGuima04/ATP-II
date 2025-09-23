@@ -41,6 +41,17 @@ void imprimir_lista(No *lista){
     }
 }
 
+void duplica_lista(No *lista){
+    No* atual = lista;
+    while(atual != NULL){
+        No* novo = (No*)malloc(sizeof(No));
+        strcpy(novo->frase, atual->frase);
+        novo ->prox = atual->prox;
+        atual->prox = novo;
+        atual = novo->prox;
+    }
+}
+
 int main(){
     int valor;
     No* lista = NULL;
