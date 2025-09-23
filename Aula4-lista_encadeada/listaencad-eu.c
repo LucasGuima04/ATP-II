@@ -64,7 +64,7 @@ int main(){
         scanf("%s",frase);
         adicionar_no(&lista,frase);
     }
-
+    duplica_lista(lista);
     imprimir_lista(lista);
     liberar_lista(lista);
 
