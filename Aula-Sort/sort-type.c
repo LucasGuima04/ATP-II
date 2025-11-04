@@ -16,7 +16,7 @@ void printArray(int arr[], int size) {
     printf("\n");
 }
 
-void SelectSort(int arr[], int n, long long *steps) {
+void SelectSort(int arr[], int n, int *steps) {
     int i, j, min_idx;
     *steps = 0;
     for (i = 0; i < n - 1; i++) {
@@ -34,7 +34,7 @@ void SelectSort(int arr[], int n, long long *steps) {
     }
 }
 
-void Merge(int X[], int l, int m, int n, int Z[], long long *steps) {
+void Merge(int X[], int l, int m, int n, int Z[], int *steps) {
     int i = l;
     int j = m + 1;
     int k = l;
@@ -69,7 +69,7 @@ void Merge(int X[], int l, int m, int n, int Z[], long long *steps) {
     }
 }
 
-void MPasso(int X[], int Y[], int n, int l, long long *steps) {
+void MPasso(int X[], int Y[], int n, int l, int *steps) {
     int i = 0;
     while (i <= n - 2 * l) {
         Merge(X, i, i + l - 1, i + 2 * l - 1, Y, steps);
@@ -86,7 +86,7 @@ void MPasso(int X[], int Y[], int n, int l, long long *steps) {
     }
 }
 
-void MSort(int X[], int n, long long *steps) {
+void MSort(int X[], int n, int *steps) {
     int l = 1;
     int* Y = (int*)malloc(n * sizeof(int));
     if (Y == NULL) {
@@ -122,7 +122,7 @@ int main() {
     const int N = 15;
     int arr1[N];
     int arr2[N];
-    long long steps;
+    int steps;
 
     for (int i = 0; i < N; i++) {
         int randVal = rand() % 100;
@@ -137,12 +137,12 @@ int main() {
     printf("\nTestando SelectSort:\n");
     SelectSort(arr1, N, &steps);
     printArray(arr1, N);
-    printf("Passos (SelectSort): %lld\n", steps);
+    printf("Passos (SelectSort): %d\n", steps);
 
     printf("\nTestando Two-way MergeSort:\n");
     MSort(arr2, N, &steps);
     printArray(arr2, N);
-    printf("Passos (MergeSort): %lld\n", steps);
+    printf("Passos (MergeSort): %d\n", steps);
 
     printf("\n--- Teste 2: Conjunto Ja Ordenado ---\n");
     int sortedArr[N];
@@ -157,12 +157,12 @@ int main() {
     printf("\nTestando SelectSort:\n");
     SelectSort(arr1, N, &steps);
     printArray(arr1, N);
-    printf("Passos (SelectSort): %lld\n", steps);
+    printf("Passos (SelectSort): %d\n", steps);
 
     printf("\nTestando Two-way MergeSort:\n");
     MSort(arr2, N, &steps);
     printArray(arr2, N);
-    printf("Passos (MergeSort): %lld\n", steps);
+    printf("Passos (MergeSort): %d\n", steps);
     
     printf("\n--- Teste 3: Conjunto Ordem Reversa ---\n");
     int reverseArr[N];
@@ -177,12 +177,12 @@ int main() {
     printf("\nTestando SelectSort:\n");
     SelectSort(arr1, N, &steps);
     printArray(arr1, N);
-    printf("Passos (SelectSort): %lld\n", steps);
+    printf("Passos (SelectSort): %d\n", steps);
 
     printf("\nTestando Two-way MergeSort:\n");
     MSort(arr2, N, &steps);
     printArray(arr2, N);
-    printf("Passos (MergeSort): %lld\n", steps);
+    printf("Passos (MergeSort): %d\n", steps);
 
     return 0;
 }
